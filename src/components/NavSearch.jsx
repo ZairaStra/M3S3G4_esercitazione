@@ -16,7 +16,7 @@ const NavSearch = () => (
             Home
           </Nav.Link>
           <Nav.Link as={Link} to="/favourites">
-            Favourite Companies
+            Favourites Companies
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
