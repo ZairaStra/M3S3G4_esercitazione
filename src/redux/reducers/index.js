@@ -1,6 +1,9 @@
-import { ADD_TO_FAVOURITES, FETCH_JOBS_ERROR, FETCH_JOBS_SUCCESS, REMOVE_FROM_FAVOURITES, SELECT_FAVOURITE } from "../actions";
+import { ADD_TO_FAVOURITES, FETCH_JOBS_ERROR, FETCH_JOBS_SUCCESS, REMOVE_FROM_FAVOURITES, SELECT_FAVOURITE, SET_SEARCH_QUERY } from "../actions";
 
 const initialState = {
+  // memorizzo la ricerca globalmente
+  searchQuery: "",
+
   //fetch globale
   favourites: {
     content: [],
@@ -17,6 +20,13 @@ const initialState = {
 
 const mainReducer = (state = initialState, action) => {
   switch (action.type) {
+    //ricerca
+    case SET_SEARCH_QUERY:
+      return {
+        ...state,
+        searchQuery: action.payload,
+      };
+
     //fetch globale
     case FETCH_JOBS_SUCCESS:
       return {

@@ -3,7 +3,7 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Job from "./Job";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchJobs } from "../redux/actions";
+import { fetchJobs, setSearchQuery } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
@@ -15,6 +15,7 @@ const MainSearch = () => {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.searchResults.error);
   const jobs = useSelector((state) => state.searchResults.content);
+  const searchQuery = useSelector((state) => state.searchQuery);
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -22,6 +23,7 @@ const MainSearch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(setSearchQuery(query));
     dispatch(fetchJobs(query));
 
     /*   try {
@@ -50,6 +52,11 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
+          {searchQuery && (
+            <p className="mt-3 display-6">
+              You searched: <em>{searchQuery}</em>
+            </p>
+          )}
           {jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
           ))}

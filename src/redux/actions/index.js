@@ -2,10 +2,18 @@ export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES";
 export const REMOVE_FROM_FAVOURITES = "REMOVE_FROM_FAVOURITES";
 export const SELECT_FAVOURITE = "SELECT_FAVOURITE";
 
+//Ricerca
+export const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
+
 //Fetch MainSearch
 
 export const FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
 export const FETCH_JOBS_ERROR = "FETCH_JOBS_ERROR";
+
+export const setSearchQuery = (query) => ({
+  type: SET_SEARCH_QUERY,
+  payload: query,
+});
 
 // Thunk
 export const fetchJobs = (query) => {
